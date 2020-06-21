@@ -23,7 +23,7 @@ class GenericUtils {
 
         fun convertTimestamp(updatedDate: String?): String {
             val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-            val formatter = SimpleDateFormat("MM d,yyyy HH:mm:ss a")
+            val formatter = SimpleDateFormat("MMM d,yyyy HH:mm:ss a")
             return formatter.format(parser.parse(updatedDate))
         }
     }
