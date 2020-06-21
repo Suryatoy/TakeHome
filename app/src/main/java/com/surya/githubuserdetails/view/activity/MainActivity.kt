@@ -26,11 +26,11 @@ class MainActivity : AppCompatActivity(), RepositoriesAdapter.OnItemClickListene
     private lateinit var repositoryAdapter: RepositoriesAdapter
     private var bottomSheetFragment: BottomSheetFragment? = null
 
-    private val userDataObserver = Observer<User> { list ->
-        list?.let {
+    private val userDataObserver = Observer<User> { user ->
+        user?.let {
             user_details.visibility = View.VISIBLE
-            user_name.text = list.name
-            GenericUtils.loadImage(list.avatar_url, user_avatar, this@MainActivity)
+            user_name.text = user.name
+            GenericUtils.loadImage(user.avatar_url, user_avatar, this@MainActivity)
         }
     }
 
@@ -40,10 +40,10 @@ class MainActivity : AppCompatActivity(), RepositoriesAdapter.OnItemClickListene
         }
     }
 
-    private val repositoryObserver = Observer<ArrayList<RepositoriesItem>> { list ->
-        list?.let {
+    private val repositoryObserver = Observer<ArrayList<RepositoriesItem>> { repository ->
+        repository?.let {
             repositories_recyclerview.layoutManager = LinearLayoutManager(this@MainActivity)
-            repositoryAdapter = RepositoriesAdapter(list, this@MainActivity)
+            repositoryAdapter = RepositoriesAdapter(repository, this@MainActivity)
             repositories_recyclerview.adapter = repositoryAdapter
         }
     }
