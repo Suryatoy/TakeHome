@@ -34,6 +34,12 @@ class MainActivity : AppCompatActivity(), RepositoriesAdapter.OnItemClickListene
         }
     }
 
+    private val errorLiveDataObserver = Observer<Boolean> { isError ->
+        if (isError) {
+            GenericUtils.showError(user_search_layout, this@MainActivity)
+        }
+    }
+
     private val repositoryObserver = Observer<ArrayList<RepositoriesItem>> { list ->
         list?.let {
             repositories_recyclerview.layoutManager = LinearLayoutManager(this@MainActivity)
@@ -54,8 +60,10 @@ class MainActivity : AppCompatActivity(), RepositoriesAdapter.OnItemClickListene
                 userViewModel.user.observe(this@MainActivity, userDataObserver)
                 userViewModel.getUserDetails(search_edit_text.text?.toString())
                 repositoryViewModel.repositories.observe(this@MainActivity, repositoryObserver)
+                userViewModel.loadError.observe(this, errorLiveDataObserver)
+                repositoryViewModel.loadError.observe(this, errorLiveDataObserver)
                 repositoryViewModel.getRepositories(search_edit_text.text?.toString())
-                GenericUtils.hideSoftKeyBoard(this,search_edit_text)
+                GenericUtils.hideSoftKeyBoard(this, search_edit_text)
             }
         }
         var bottomSheetBehavior = BottomSheetBehavior.from(bottom_sheet_layout)

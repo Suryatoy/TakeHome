@@ -20,6 +20,7 @@ class RepositoryViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     val repositories by lazy { MutableLiveData<ArrayList<RepositoriesItem>>() }
+    val loadError by lazy { MutableLiveData<Boolean>() }
 
     @Inject
     lateinit var repositoryApiService: RepositoryApiService
@@ -27,11 +28,12 @@ class RepositoryViewModel(application: Application) : AndroidViewModel(applicati
     fun inject() {
         if (!injected) {
             DaggerRepositoryViewModelComponent.builder()
-                .appModule(AppModule( getApplication()))
+                .appModule(AppModule(getApplication()))
                 .build()
                 .inject(this)
         }
     }
+
     private var injected = false
     private val disposable = CompositeDisposable()
 
@@ -51,10 +53,12 @@ class RepositoryViewModel(application: Application) : AndroidViewModel(applicati
                 .subscribeWith(object : DisposableSingleObserver<ArrayList<RepositoriesItem>>() {
                     override fun onSuccess(list: ArrayList<RepositoriesItem>) {
                         repositories.value = list
+                        loadError.value = false
                     }
 
                     override fun onError(e: Throwable) {
                         repositories.value = null
+                        loadError.value = true
                     }
                 })
         )

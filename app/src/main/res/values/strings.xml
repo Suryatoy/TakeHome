@@ -5,4 +5,6 @@
     <string name="last_updated_label">Last Updated</string>
     <string name="stars_label">Stars</string>
     <string name="forks_label">Forks</string>
+    <string name="network_error">Error occured while fetching details</string>
+    <string name="snackbar_ok">Ok</string>
 </resources>

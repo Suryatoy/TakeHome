@@ -21,6 +21,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     val user by lazy { MutableLiveData<User>() }
+    val loadError by lazy { MutableLiveData<Boolean>() }
 
     @Inject
     lateinit var apiService: UserApiService
@@ -52,10 +53,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 .subscribeWith(object : DisposableSingleObserver<User>() {
                     override fun onSuccess(list: User) {
                         user.value = list
+                        loadError.value = false
                     }
 
                     override fun onError(e: Throwable) {
                         user.value = null
+                        loadError.value = true
                     }
                 })
         )
