@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.surya.githubuserdetails.R
 import com.surya.githubuserdetails.model.repository.RepositoriesItem
-import com.surya.githubuserdetails.util.GenericUtils
+import com.surya.githubuserdetails.util.convertTimestamp
 import kotlinx.android.synthetic.main.bottom_sheet.*
 
 class BottomSheetFragment() : BottomSheetDialogFragment() {
@@ -45,7 +45,7 @@ class BottomSheetFragment() : BottomSheetDialogFragment() {
     }
 
     fun updateContent(repositoriesItem: RepositoriesItem) {
-        last_updated_value.text = GenericUtils.convertTimestamp(repositoriesItem.updated_at)
+        last_updated_value.text = convertTimestamp(repositoriesItem.updated_at)
         stars_value.text = repositoriesItem.stargazers_count
         forks_value.text = repositoriesItem.forks
     }

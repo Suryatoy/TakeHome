@@ -14,11 +14,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.surya.githubuserdetails.R
 import java.text.SimpleDateFormat
 
-
-class GenericUtils {
-
-    companion object {
-
         /**
          * To load images into Image view
          */
@@ -62,5 +57,3 @@ class GenericUtils {
             snackbarView.setBackgroundColor(Color.BLACK)
             snackbar.show()
         }
-    }
-}

@@ -11,7 +11,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.surya.githubuserdetails.R
 import com.surya.githubuserdetails.model.repository.RepositoriesItem
 import com.surya.githubuserdetails.model.user.User
-import com.surya.githubuserdetails.util.GenericUtils
+import com.surya.githubuserdetails.util.hideSoftKeyBoard
+import com.surya.githubuserdetails.util.loadImage
+import com.surya.githubuserdetails.util.showError
 import com.surya.githubuserdetails.view.adapter.RepositoriesAdapter
 import com.surya.githubuserdetails.view.fragment.BottomSheetFragment
 import com.surya.githubuserdetails.viewmodel.RepositoryViewModel
@@ -30,13 +32,13 @@ class MainActivity : AppCompatActivity(), RepositoriesAdapter.OnItemClickListene
         user?.let {
             user_details.visibility = View.VISIBLE
             user_name.text = user.name
-            GenericUtils.loadImage(user.avatar_url, user_avatar, this@MainActivity)
+            loadImage(user.avatar_url, user_avatar, this@MainActivity)
         }
     }
 
     private val errorLiveDataObserver = Observer<Boolean> { isError ->
         if (isError) {
-            GenericUtils.showError(user_search_layout, this@MainActivity)
+           showError(user_search_layout, this@MainActivity)
         }
     }
 
@@ -63,7 +65,7 @@ class MainActivity : AppCompatActivity(), RepositoriesAdapter.OnItemClickListene
                 userViewModel.loadError.observe(this, errorLiveDataObserver)
                 repositoryViewModel.loadError.observe(this, errorLiveDataObserver)
                 repositoryViewModel.getRepositories(search_edit_text.text?.toString())
-                GenericUtils.hideSoftKeyBoard(this, search_edit_text)
+                hideSoftKeyBoard(this, search_edit_text)
             }
         }
         var bottomSheetBehavior = BottomSheetBehavior.from(bottom_sheet_layout)
