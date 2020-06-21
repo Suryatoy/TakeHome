@@ -24,7 +24,5 @@ open class RepositoryApiModule {
     }
 
     @Provides
-   open fun getRepositoryApiService(): RepositoryApiService {
-        return RepositoryApiService()
-    }
+   open fun getRepositoryApiService(): RepositoryApiService = RepositoryApiService()
 }

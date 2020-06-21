@@ -23,7 +23,5 @@ open class UserApiModule {
     }
 
     @Provides
-    open fun getUserApiService(): UserApiService {
-        return UserApiService()
-    }
+    open fun getUserApiService() = UserApiService()
 }
