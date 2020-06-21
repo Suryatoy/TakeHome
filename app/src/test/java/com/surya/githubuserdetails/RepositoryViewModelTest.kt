@@ -60,8 +60,8 @@ class RepositoryViewModelTest {
 
         repositoryViewModel.getRepositories("octocat")
 
-        Assert.assertEquals(1, repositoryViewModel.repositories.value?.size)
         Assert.assertEquals("My first repository on GitHub!", repositoryViewModel.repositories.value?.get(0)?.description)
+        Assert.assertEquals("1176",repositoryViewModel.repositories.value?.get(0)?.forks)
     }
 
     @Before
