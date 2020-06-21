@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_repository.view.*
 
 class RepositoriesAdapter(
     private val repositoriesList: ArrayList<RepositoriesItem>,
-    val itemClickListener: OnItemClickListener
+    private val itemClickListener: OnItemClickListener
 ) :
     RecyclerView.Adapter<RepositoriesAdapter.RepositoryViewHolder>() {
 
@@ -36,12 +36,6 @@ class RepositoriesAdapter(
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
         val repositoriesItem = repositoriesList[position]
         holder.bind(repositoriesItem, itemClickListener)
-    }
-
-    fun updateRepositoriesList(newRepositoriesList: List<RepositoriesItem>) {
-        repositoriesList.clear()
-        repositoriesList.addAll(newRepositoriesList)
-        notifyDataSetChanged()
     }
 
     interface OnItemClickListener {

@@ -19,8 +19,8 @@ class RepositoryViewModel(application: Application) : AndroidViewModel(applicati
         injected = true
     }
 
-    val repositories by lazy { MutableLiveData<ArrayList<RepositoriesItem>>() }
-    val loadError by lazy { MutableLiveData<Boolean>() }
+    internal val repositories by lazy { MutableLiveData<ArrayList<RepositoriesItem>>() }
+    internal val loadError by lazy { MutableLiveData<Boolean>() }
 
     @Inject
     lateinit var repositoryApiService: RepositoryApiService

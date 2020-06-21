@@ -16,12 +16,12 @@ import javax.inject.Inject
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
-    constructor(application: Application, test: Boolean = true): this(application) {
+    constructor(application: Application, test: Boolean = true) : this(application) {
         injected = true
     }
 
-    val user by lazy { MutableLiveData<User>() }
-    val loadError by lazy { MutableLiveData<Boolean>() }
+    internal val user by lazy { MutableLiveData<User>() }
+    internal val loadError by lazy { MutableLiveData<Boolean>() }
 
     @Inject
     lateinit var apiService: UserApiService

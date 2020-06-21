@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity(), RepositoriesAdapter.OnItemClickListene
 
     private val userDataObserver = Observer<User> { user ->
         user?.let {
-            user_details.visibility = View.VISIBLE
             user_name.text = user.name
+            user_details.visibility = View.VISIBLE
             loadImage(user.avatar_url, user_avatar, this@MainActivity)
         }
     }

@@ -13,18 +13,15 @@ import kotlinx.android.synthetic.main.bottom_sheet.*
 class BottomSheetFragment() : BottomSheetDialogFragment() {
 
     companion object {
+       private const val repositoryKey = "repositories"
         fun newInstance(repositoriesItem: RepositoriesItem) = BottomSheetFragment().apply {
             arguments = Bundle().apply {
-                putParcelable("repositories", repositoriesItem)
+                putParcelable(repositoryKey, repositoriesItem)
             }
         }
     }
 
     private var fragmentView: View? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +35,7 @@ class BottomSheetFragment() : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
-            val repositoriesItem = arguments?.getParcelable<RepositoriesItem>("repositories")
+            val repositoriesItem = arguments?.getParcelable<RepositoriesItem>(repositoryKey)
             repositoriesItem?.let {
                 updateContent(it) }
         }
