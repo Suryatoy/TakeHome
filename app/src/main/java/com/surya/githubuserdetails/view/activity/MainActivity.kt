@@ -55,12 +55,16 @@ class MainActivity : AppCompatActivity(), RepositoriesAdapter.OnItemClickListene
                 userViewModel.getUserDetails(search_edit_text.text?.toString())
                 repositoryViewModel.repositories.observe(this@MainActivity, repositoryObserver)
                 repositoryViewModel.getRepositories(search_edit_text.text?.toString())
+                GenericUtils.hideSoftKeyBoard(this,search_edit_text)
             }
         }
         var bottomSheetBehavior = BottomSheetBehavior.from(bottom_sheet_layout)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
     }
 
+    /**
+     * To show pop up of repository details
+     */
     private fun showBottomSheetDialogFragment(repositoriesItem: RepositoriesItem) {
         if (bottomSheetFragment == null) {
             val bottomSheetFragment = BottomSheetFragment.newInstance(repositoriesItem)
@@ -70,6 +74,9 @@ class MainActivity : AppCompatActivity(), RepositoriesAdapter.OnItemClickListene
         }
     }
 
+    /**
+     * Click listener for Recyclerview
+     */
     override fun onItemClicked(repositoriesItem: RepositoriesItem) {
         showBottomSheetDialogFragment(repositoriesItem)
     }
