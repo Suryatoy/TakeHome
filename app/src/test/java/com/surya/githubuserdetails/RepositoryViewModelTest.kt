@@ -27,16 +27,14 @@ class RepositoryViewModelTest {
 
     @Mock
     lateinit var mockRepositoryApiService: RepositoryApiService
-    val application = Mockito.mock(Application::class.java)
 
-    var repositoryViewModel = RepositoryViewModel(application, true)
+    var repositoryViewModel = RepositoryViewModel( true)
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
 
         DaggerRepositoryViewModelComponent.builder()
-            .appModule(AppModule(application))
             .repositoryApiModule(RepositoryApiModuleTest(mockRepositoryApiService))
             .build()
             .inject(repositoryViewModel)

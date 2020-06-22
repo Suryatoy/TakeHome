@@ -3,6 +3,7 @@ package com.surya.githubuserdetails.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.surya.githubuserdetails.di.AppModule
 import com.surya.githubuserdetails.di.repository.DaggerRepositoryViewModelComponent
 import com.surya.githubuserdetails.model.repository.RepositoriesItem
@@ -13,9 +14,9 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class RepositoryViewModel(application: Application) : AndroidViewModel(application) {
+class RepositoryViewModel() : ViewModel() {
 
-    constructor(application: Application, test: Boolean = true) : this(application) {
+    constructor( test: Boolean = true) : this() {
         injected = true
     }
 
@@ -28,7 +29,6 @@ class RepositoryViewModel(application: Application) : AndroidViewModel(applicati
     fun inject() {
         if (!injected) {
             DaggerRepositoryViewModelComponent.builder()
-                .appModule(AppModule(getApplication()))
                 .build()
                 .inject(this)
         }

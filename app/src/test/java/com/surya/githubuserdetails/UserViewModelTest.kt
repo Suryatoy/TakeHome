@@ -29,16 +29,13 @@ class UserViewModelTest {
     @Mock
     lateinit var userApiService: UserApiService
 
-    val application = Mockito.mock(Application::class.java)
-
-    var userViewModel = UserViewModel(application, true)
+    var userViewModel = UserViewModel(true)
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
 
         DaggerUserViewModelComponent.builder()
-            .appModule(AppModule(application))
             .userApiModule(UserApiModuleTest(userApiService))
             .build()
             .inject(userViewModel)

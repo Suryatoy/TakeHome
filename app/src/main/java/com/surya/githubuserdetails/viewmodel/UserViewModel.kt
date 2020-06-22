@@ -3,6 +3,7 @@ package com.surya.githubuserdetails.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.surya.githubuserdetails.di.AppModule
 import com.surya.githubuserdetails.di.user.DaggerUserViewModelComponent
 
@@ -14,9 +15,9 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
-class UserViewModel(application: Application) : AndroidViewModel(application) {
+class UserViewModel() : ViewModel() {
 
-    constructor(application: Application, test: Boolean = true) : this(application) {
+    constructor( test: Boolean = true) : this() {
         injected = true
     }
 
@@ -31,7 +32,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun inject() {
         if (!injected) {
             DaggerUserViewModelComponent.builder()
-                .appModule(AppModule(getApplication()))
                 .build()
                 .inject(this)
         }
