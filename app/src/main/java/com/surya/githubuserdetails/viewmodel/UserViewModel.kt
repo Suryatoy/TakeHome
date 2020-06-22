@@ -48,7 +48,7 @@ class UserViewModel() : ViewModel() {
     private fun getUserInformation(userId: String?) {
         disposable.add(
             apiService.getUserDetails(userId)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<User>() {
                     override fun onSuccess(list: User) {

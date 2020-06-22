@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class RepositoryViewModel() : ViewModel() {
 
-    constructor( test: Boolean = true) : this() {
+    constructor(test: Boolean = true) : this() {
         injected = true
     }
 
@@ -48,7 +48,7 @@ class RepositoryViewModel() : ViewModel() {
     private fun getRepositoryDetails(userId: String?) {
         disposable.add(
             repositoryApiService.getRepositoryDetails(userId)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<ArrayList<RepositoriesItem>>() {
                     override fun onSuccess(list: ArrayList<RepositoriesItem>) {

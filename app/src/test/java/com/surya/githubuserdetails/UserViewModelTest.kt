@@ -67,7 +67,7 @@ class UserViewModelTest {
             }
 
         }
-        RxJavaPlugins.setInitNewThreadSchedulerHandler { scheduler -> immediate }
+        RxJavaPlugins.setInitIoSchedulerHandler { scheduler -> immediate }
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> immediate }
     }
 

@@ -70,7 +70,7 @@ class RepositoryViewModelTest {
             }
 
         }
-        RxJavaPlugins.setInitNewThreadSchedulerHandler { scheduler -> immediate }
+        RxJavaPlugins.setIoSchedulerHandler { scheduler -> immediate }
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> immediate }
     }
 
